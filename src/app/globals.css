@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink-950: #070a14;
+  --color-ink-900: #0b0f1d;
+  --color-ink-850: #101627;
+  --color-ink-800: #151c31;
+  --color-ink-700: #1e2740;
+  --color-ink-600: #2c3653;
+  --color-ink-500: #46527a;
+  --color-ink-400: #6b789f;
+  --color-ink-300: #97a2c2;
+  --color-ink-200: #c3cade;
+  --color-ink-100: #e6e9f2;
+
+  --color-brand-400: #8b93ff;
+  --color-brand-500: #6d6bf5;
+  --color-brand-600: #5b4ee0;
+
+  --color-glow-400: #f5b344;
+  --color-glow-500: #eb9b1f;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  --radius-xl2: 1.25rem;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: var(--color-ink-950);
+  color: var(--color-ink-100);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+}
+
+/* Ambient background: two soft light sources, fixed so it doesn't scroll. */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(120px);
+  opacity: 0.5;
+}
+.aurora::before {
+  width: 44rem;
+  height: 44rem;
+  top: -14rem;
+  left: -10rem;
+  background: radial-gradient(circle, #4c3fd6 0%, transparent 68%);
+}
+.aurora::after {
+  width: 38rem;
+  height: 38rem;
+  top: 18rem;
+  right: -12rem;
+  background: radial-gradient(circle, #1d6fb8 0%, transparent 70%);
+}
+
+/* Frosted panel used for every card and surface. */
+.panel {
+  background: color-mix(in srgb, var(--color-ink-850) 78%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-ink-600) 55%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.panel-hover {
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+.panel-hover:hover {
+  border-color: color-mix(in srgb, var(--color-brand-500) 55%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -22px rgba(109, 107, 245, 0.75);
+}
+
+/* Scrollbars — the default light ones look broken on a dark UI. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ink-600) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-ink-600);
+  border-radius: 9999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-ink-500);
+}
+
+/* Focus ring consistent across buttons, links and inputs. */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand-400);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: rise 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.09),
+    transparent
+  );
+  animation: shimmer 1.6s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Native video controls sit better with a rounded container. */
+video {
+  border-radius: 0.75rem;
+  background: #000;
+}
