@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Portal24";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Tamilvazhi";
 
 export const metadata: Metadata = {
   title: {

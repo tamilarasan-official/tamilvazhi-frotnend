@@ -7,7 +7,7 @@ import { LogoMark } from "@/components/icons";
 export const metadata: Metadata = { title: "Instructor sign in" };
 export const dynamic = "force-dynamic";
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Portal24";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Tamilvazhi";
 
 export default async function AdminLoginPage({
   searchParams,

@@ -7,7 +7,7 @@ import { VideoIcon, DocumentIcon, PlayIcon } from "@/components/icons";
 
 export const dynamic = "force-dynamic";
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Portal24";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Tamilvazhi";
 
 type StudentCourse = {
   id: string;

@@ -6,7 +6,7 @@ import { ArrowLeftIcon } from "@/components/icons";
 
 export const metadata: Metadata = { title: "Enter access code" };
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Portal24";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Tamilvazhi";
 
 export default function AccessPage() {
   return (

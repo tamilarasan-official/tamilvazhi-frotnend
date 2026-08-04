@@ -1,8 +1,8 @@
-# portal24-web
+# tamilvazhi-web
 
 Frontend for the course portal. **Next.js 15 (App Router) + TypeScript + Tailwind v4.**
 
-Pairs with [`portal24-api`](../backend) — deploy each as its own Dokploy application. This repo holds no database and no business logic; it renders the UI and calls the API.
+Pairs with [`tamilvazhi-api`](../backend) — deploy each as its own Dokploy application. This repo holds no database and no business logic; it renders the UI and calls the API.
 
 ---
 
@@ -63,7 +63,7 @@ On localhost, cookies set by `localhost:4000` are sent to `localhost:3000` — p
 ```
 NEXT_PUBLIC_API_URL=https://api.yoursite.com
 NEXT_PUBLIC_SITE_NAME=Your Academy
-INTERNAL_API_URL=http://portal24-api:4000
+INTERNAL_API_URL=http://tamilvazhi-api:4000
 ```
 
 **Build Arguments tab** — this is the step that catches people out:

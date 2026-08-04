@@ -17,7 +17,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # MUST arrive as build args. Setting them only as runtime env vars in Dokploy
 # leaves the browser calling http://localhost:4000 in production.
 ARG NEXT_PUBLIC_API_URL=http://localhost:4000
-ARG NEXT_PUBLIC_SITE_NAME=Portal24
+ARG NEXT_PUBLIC_SITE_NAME=Tamilvazhi
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_SITE_NAME=$NEXT_PUBLIC_SITE_NAME
 

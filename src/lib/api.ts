@@ -9,7 +9,7 @@ import { cookies } from "next/headers";
  * the student would be asked for their access code on every page load.
  *
  * INTERNAL_API_URL lets server-to-server calls go over Dokploy's private
- * network (http://portal24-api:4000), skipping the public internet and TLS
+ * network (http://tamilvazhi-api:4000), skipping the public internet and TLS
  * termination. Falls back to the public URL when unset.
  */
 

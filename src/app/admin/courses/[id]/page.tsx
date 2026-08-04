@@ -6,7 +6,7 @@ import { CourseEditor, type EditorCourse } from "@/components/admin/course-edito
 
 export const dynamic = "force-dynamic";
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Portal24";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Tamilvazhi";
 
 async function loadCourse(id: string) {
   return serverApi<{ course: EditorCourse }>(`/api/courses/${id}`);

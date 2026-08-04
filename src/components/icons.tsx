@@ -152,13 +152,11 @@ export function SpinnerIcon(props: IconProps) {
 export function LogoMark(props: IconProps) {
   return (
     <svg viewBox="0 0 32 32" fill="none" {...props}>
-      <rect width="32" height="32" rx="9" fill="url(#p24grad)" />
-      <path
-        d="M11 10.5h5.6c2.7 0 4.4 1.6 4.4 4.1 0 2.6-1.7 4.2-4.5 4.2h-2.6v3.7H11V10.5Zm3 6.1h2.3c1.2 0 2-.7 2-1.9s-.8-1.9-2-1.9H14v3.8Z"
-        fill="#fff"
-      />
+      <rect width="32" height="32" rx="9" fill="url(#tvgrad)" />
+      {/* "T" for Tamilvazhi — bar across the top, centred stem. */}
+      <path d="M9.5 10h13v2.9h-4.9V22h-3.2v-9.1H9.5V10Z" fill="#fff" />
       <defs>
-        <linearGradient id="p24grad" x1="0" y1="0" x2="32" y2="32">
+        <linearGradient id="tvgrad" x1="0" y1="0" x2="32" y2="32">
           <stop stopColor="#7d7cff" />
           <stop offset="1" stopColor="#4b3fd0" />
         </linearGradient>
