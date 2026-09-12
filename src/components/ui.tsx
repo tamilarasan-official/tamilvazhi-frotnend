@@ -4,18 +4,20 @@ export function cn(...parts: (string | false | null | undefined)[]): string {
   return parts.filter(Boolean).join(" ");
 }
 
+const buttonBase =
+  "inline-flex items-center justify-center gap-2 rounded border font-medium transition-colors";
+
 const buttonVariants = {
   primary:
-    "bg-brand-500 text-white hover:bg-brand-400 shadow-lg shadow-brand-500/25 disabled:hover:bg-brand-500",
-  secondary:
-    "bg-ink-800 text-ink-100 border border-ink-600/70 hover:border-ink-500 hover:bg-ink-700",
-  ghost: "text-ink-300 hover:text-ink-100 hover:bg-ink-800/70",
-  danger: "bg-red-500/90 text-white hover:bg-red-500",
+    "border-brand-600 bg-brand-500 text-white hover:bg-brand-600 disabled:hover:bg-brand-500",
+  secondary: "border-ink-600 bg-white text-ink-200 hover:border-ink-500 hover:bg-ink-900",
+  ghost: "border-transparent text-ink-400 hover:bg-ink-800 hover:text-ink-100",
+  danger: "border-red-800 bg-red-700 text-white hover:bg-red-800",
 } as const;
 
 const buttonSizes = {
   sm: "h-9 px-3.5 text-[13px]",
-  md: "h-11 px-5 text-sm",
+  md: "h-10 px-5 text-sm",
   lg: "h-12 px-6 text-[15px]",
 } as const;
 
@@ -29,7 +31,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     <button
       ref={ref}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all",
+        buttonBase,
         "disabled:cursor-not-allowed disabled:opacity-50",
         buttonVariants[variant],
         buttonSizes[size],
@@ -41,7 +43,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = "Button";
 
-/** Same look as Button, but a real anchor — needed for download links. */
+/** Same look as Button, but a real anchor, needed for download links. */
 export function LinkButton({
   className,
   variant = "primary",
@@ -53,31 +55,22 @@ export function LinkButton({
 }) {
   return (
     <a
-      className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all",
-        buttonVariants[variant],
-        buttonSizes[size],
-        className,
-      )}
+      className={cn(buttonBase, buttonVariants[variant], buttonSizes[size], className)}
       {...props}
     />
   );
 }
 
+const fieldBase =
+  "w-full rounded border border-ink-600 bg-white text-sm text-ink-100 outline-none " +
+  "placeholder:text-ink-500 transition-[border-color,box-shadow] " +
+  "focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20";
+
 export const Input = React.forwardRef<
   HTMLInputElement,
   React.InputHTMLAttributes<HTMLInputElement>
 >(({ className, ...props }, ref) => (
-  <input
-    ref={ref}
-    className={cn(
-      "h-11 w-full rounded-xl border border-ink-600/70 bg-ink-900/70 px-3.5 text-sm text-ink-100",
-      "placeholder:text-ink-500 transition-colors",
-      "focus:border-brand-500/70 focus:bg-ink-900",
-      className,
-    )}
-    {...props}
-  />
+  <input ref={ref} className={cn(fieldBase, "h-10 px-3", className)} {...props} />
 ));
 Input.displayName = "Input";
 
@@ -85,15 +78,7 @@ export const Textarea = React.forwardRef<
   HTMLTextAreaElement,
   React.TextareaHTMLAttributes<HTMLTextAreaElement>
 >(({ className, ...props }, ref) => (
-  <textarea
-    ref={ref}
-    className={cn(
-      "w-full resize-y rounded-xl border border-ink-600/70 bg-ink-900/70 px-3.5 py-2.5 text-sm text-ink-100",
-      "placeholder:text-ink-500 transition-colors focus:border-brand-500/70 focus:bg-ink-900",
-      className,
-    )}
-    {...props}
-  />
+  <textarea ref={ref} className={cn(fieldBase, "resize-y px-3 py-2.5", className)} {...props} />
 ));
 Textarea.displayName = "Textarea";
 
@@ -103,7 +88,10 @@ export function Label({
 }: React.LabelHTMLAttributes<HTMLLabelElement>) {
   return (
     <label
-      className={cn("mb-1.5 block text-[13px] font-medium text-ink-300", className)}
+      className={cn(
+        "mb-1.5 block text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-400",
+        className,
+      )}
       {...props}
     />
   );
@@ -113,7 +101,7 @@ export function Card({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("panel rounded-2xl", className)} {...props} />;
+  return <div className={cn("panel rounded-md", className)} {...props} />;
 }
 
 export function Badge({
@@ -124,15 +112,15 @@ export function Badge({
   tone?: "neutral" | "brand" | "glow" | "success";
 }) {
   const tones = {
-    neutral: "bg-ink-700/60 text-ink-300 border-ink-600/60",
-    brand: "bg-brand-500/15 text-brand-400 border-brand-500/30",
-    glow: "bg-glow-500/15 text-glow-400 border-glow-500/30",
-    success: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
+    neutral: "border-ink-600 bg-ink-800 text-ink-400",
+    brand: "border-brand-500/30 bg-brand-500/8 text-brand-500",
+    glow: "border-glow-500/40 bg-glow-500/10 text-glow-400",
+    success: "border-emerald-700/30 bg-emerald-50 text-emerald-800",
   };
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[11px] font-medium tracking-wide",
+        "inline-flex items-center gap-1 rounded-sm border px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.06em]",
         tones[tone],
         className,
       )}
@@ -153,9 +141,9 @@ export function EmptyState({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-ink-600/60 px-6 py-14 text-center">
+    <div className="flex flex-col items-center justify-center rounded-md border border-dashed border-ink-600 bg-white px-6 py-14 text-center">
       {icon && <div className="mb-3 text-ink-500">{icon}</div>}
-      <p className="text-[15px] font-medium text-ink-200">{title}</p>
+      <p className="font-serif text-lg font-semibold text-ink-200">{title}</p>
       {description && (
         <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-ink-400">{description}</p>
       )}

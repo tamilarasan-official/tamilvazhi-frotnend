@@ -37,7 +37,7 @@ export function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center overflow-y-auto bg-ink-950/75 p-0 backdrop-blur-sm sm:items-center sm:p-6"
+      className="fixed inset-0 z-50 flex items-end justify-center overflow-y-auto bg-ink-100/45 p-0 sm:items-center sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-label={title}
@@ -46,9 +46,9 @@ export function Modal({
       }}
     >
       <div
-        className={`animate-rise panel w-full ${width} rounded-t-2xl p-6 sm:rounded-2xl`}
+        className={`animate-rise panel w-full ${width} rounded-t-md border-t-[3px] border-t-brand-500 p-6 sm:rounded-md`}
       >
-        <h2 className="mb-5 text-lg font-semibold tracking-tight text-ink-100">
+        <h2 className="mb-5 text-xl text-ink-100">
           {title}
         </h2>
         {children}

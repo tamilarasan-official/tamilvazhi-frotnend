@@ -67,7 +67,7 @@ function CourseRow({ course }: { course: AdminCourse }) {
           <div className="flex flex-wrap items-center gap-2">
             <Link
               href={`/admin/courses/${course.id}`}
-              className="text-[17px] font-semibold tracking-tight text-ink-100 transition-colors hover:text-brand-400"
+              className="font-serif text-[19px] font-semibold text-ink-100 transition-colors hover:text-brand-500"
             >
               {course.title}
             </Link>
@@ -128,8 +128,8 @@ export function AccessCodePill({ code }: { code: string }) {
       onClick={copy}
       title="Copy access code"
       className={cn(
-        "inline-flex items-center gap-2 self-start rounded-xl border border-ink-600/70 bg-ink-900/70 px-3 py-1.5 font-mono text-[13px] tracking-widest transition-colors hover:border-brand-500/60 sm:self-end",
-        copied ? "text-emerald-400" : "text-ink-200",
+        "inline-flex items-center gap-2 self-start rounded border border-ink-600 bg-white px-3 py-1.5 font-mono text-[13px] tracking-widest transition-colors hover:border-brand-500 sm:self-end",
+        copied ? "text-emerald-700" : "text-ink-200",
       )}
     >
       {copied ? <CheckIcon className="h-3.5 w-3.5" /> : null}

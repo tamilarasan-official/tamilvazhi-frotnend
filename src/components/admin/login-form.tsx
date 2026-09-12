@@ -65,7 +65,7 @@ export function LoginForm({ next }: { next?: string }) {
             type="button"
             onClick={() => setShowPassword((s) => !s)}
             aria-label={showPassword ? "Hide password" : "Show password"}
-            className="absolute right-1.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-ink-500 transition-colors hover:text-ink-200"
+            className="absolute right-1.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded text-ink-500 transition-colors hover:text-ink-200"
           >
             {showPassword ? <EyeOffIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
           </button>
@@ -73,7 +73,7 @@ export function LoginForm({ next }: { next?: string }) {
       </div>
 
       {error && (
-        <p role="alert" className="text-sm text-red-400">
+        <p role="alert" className="text-sm text-red-700">
           {error}
         </p>
       )}

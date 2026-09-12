@@ -12,7 +12,7 @@ export default function AccessPage() {
   return (
     <>
       <SiteHeader siteName={siteName} />
-      <main className="mx-auto flex min-h-[calc(100dvh-4rem)] w-full max-w-md flex-col justify-center px-4 pb-20 sm:px-6">
+      <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-4 py-16 sm:px-6">
         <div className="animate-rise">
           <Link
             href="/"
@@ -22,9 +22,8 @@ export default function AccessPage() {
             Back
           </Link>
 
-          <h1 className="text-3xl font-semibold tracking-tight text-ink-100">
-            Enter your access code
-          </h1>
+          <p className="eyebrow">Student access</p>
+          <h1 className="mt-2 text-3xl text-ink-100">Enter your access code</h1>
           <p className="mt-2.5 text-[15px] leading-relaxed text-ink-400">
             Type the code your instructor gave you to unlock the course materials.
           </p>

@@ -39,7 +39,7 @@ export default async function ManageCoursePage({
       <>
         <AdminHeader name={admin.name || admin.email} siteName={siteName} />
         <main className="mx-auto w-full max-w-md px-4 py-24 text-center">
-          <h1 className="text-xl font-semibold text-ink-100">Couldn&apos;t load this course</h1>
+          <h1 className="text-2xl text-ink-100">Couldn&apos;t load this course</h1>
           <p className="mt-2 text-sm leading-relaxed text-ink-400">{result.error}</p>
         </main>
       </>

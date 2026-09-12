@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Tamilvazhi";
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#070a14",
+  themeColor: "#1f3f68",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -24,9 +25,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        <div className="aurora" aria-hidden="true" />
-        {children}
+      <body className="flex min-h-dvh flex-col antialiased">
+        <div className="flex flex-1 flex-col">{children}</div>
+        <SiteFooter siteName={siteName} />
       </body>
     </html>
   );

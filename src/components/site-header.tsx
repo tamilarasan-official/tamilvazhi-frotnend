@@ -9,11 +9,11 @@ export function SiteHeader({
   right?: React.ReactNode;
 }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-ink-700/50 bg-ink-950/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-ink-700 border-t-[3px] border-t-brand-500 bg-white">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-85">
+        <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-80">
           <LogoMark className="h-8 w-8" />
-          <span className="text-[15px] font-semibold tracking-tight text-ink-100">
+          <span className="font-serif text-[19px] font-semibold tracking-tight text-ink-100">
             {siteName}
           </span>
         </Link>

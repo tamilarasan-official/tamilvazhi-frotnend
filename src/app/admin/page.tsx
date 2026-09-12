@@ -28,7 +28,7 @@ export default async function AdminDashboard() {
       <>
         <AdminHeader name={admin.name || admin.email} siteName={siteName} />
         <main className="mx-auto w-full max-w-md px-4 py-24 text-center">
-          <h1 className="text-xl font-semibold text-ink-100">Couldn&apos;t load your courses</h1>
+          <h1 className="text-2xl text-ink-100">Couldn&apos;t load your courses</h1>
           <p className="mt-2 text-sm leading-relaxed text-ink-400">{result.error}</p>
         </main>
       </>
@@ -51,7 +51,8 @@ export default async function AdminDashboard() {
       <main className="mx-auto w-full max-w-6xl px-4 pb-24 pt-10 sm:px-6">
         <div className="animate-rise flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-semibold tracking-tight text-ink-100">Courses</h1>
+            <p className="eyebrow">Instructor dashboard</p>
+            <h1 className="mt-2 text-3xl text-ink-100">Courses</h1>
             <p className="mt-2 text-[15px] text-ink-400">
               Upload videos and documents, then share the access code with your students.
             </p>
@@ -59,13 +60,15 @@ export default async function AdminDashboard() {
           <CreateCourseButton />
         </div>
 
+        <div className="rule-double mt-6" aria-hidden="true" />
+
         <div className="animate-rise mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {stats.map((stat) => (
-            <Card key={stat.label} className="p-4">
+            <Card key={stat.label} className="border-t-[3px] border-t-brand-500 p-4">
               <p className="text-[12px] font-medium uppercase tracking-wide text-ink-500">
                 {stat.label}
               </p>
-              <p className="mt-1.5 text-2xl font-semibold tracking-tight text-ink-100">
+              <p className="mt-1.5 font-serif text-2xl font-semibold text-ink-100">
                 {stat.value}
               </p>
             </Card>

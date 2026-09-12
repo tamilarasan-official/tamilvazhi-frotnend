@@ -1,33 +1,40 @@
 @import "tailwindcss";
 
+/*
+ * Classic, editorial palette. The `ink` scale is ordered so that ink-100 is the
+ * darkest (primary text) and ink-950 the lightest (page background), so every
+ * component reads "text-ink-100 on bg-ink-950" and stays legible.
+ */
 @theme {
-  --color-ink-950: #070a14;
-  --color-ink-900: #0b0f1d;
-  --color-ink-850: #101627;
-  --color-ink-800: #151c31;
-  --color-ink-700: #1e2740;
-  --color-ink-600: #2c3653;
-  --color-ink-500: #46527a;
-  --color-ink-400: #6b789f;
-  --color-ink-300: #97a2c2;
-  --color-ink-200: #c3cade;
-  --color-ink-100: #e6e9f2;
+  --color-ink-950: #f5f3ee;
+  --color-ink-900: #fbfaf8;
+  --color-ink-850: #ffffff;
+  --color-ink-800: #ece9e2;
+  --color-ink-700: #dcd7cc;
+  --color-ink-600: #c9c3b5;
+  --color-ink-500: #7d786c;
+  --color-ink-400: #5c574c;
+  --color-ink-300: #46423a;
+  --color-ink-200: #2d2a24;
+  --color-ink-100: #1a1814;
 
-  --color-brand-400: #8b93ff;
-  --color-brand-500: #6d6bf5;
-  --color-brand-600: #5b4ee0;
+  /* Navy: the single brand colour. */
+  --color-brand-400: #2f5687;
+  --color-brand-500: #1f3f68;
+  --color-brand-600: #16304f;
 
-  --color-glow-400: #f5b344;
-  --color-glow-500: #eb9b1f;
+  /* Old gold: used sparingly for notices and hairline accents. */
+  --color-glow-400: #8a6414;
+  --color-glow-500: #a67c1e;
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-
-  --radius-xl2: 1.25rem;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
+    Georgia, "Times New Roman", serif;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html,
@@ -43,57 +50,56 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Ambient background: two soft light sources, fixed so it doesn't scroll. */
-.aurora {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-}
-.aurora::before,
-.aurora::after {
-  content: "";
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(120px);
-  opacity: 0.5;
-}
-.aurora::before {
-  width: 44rem;
-  height: 44rem;
-  top: -14rem;
-  left: -10rem;
-  background: radial-gradient(circle, #4c3fd6 0%, transparent 68%);
-}
-.aurora::after {
-  width: 38rem;
-  height: 38rem;
-  top: 18rem;
-  right: -12rem;
-  background: radial-gradient(circle, #1d6fb8 0%, transparent 70%);
+/* Headings are set in a classic serif; everything else stays in the sans. */
+h1,
+h2 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.005em;
 }
 
-/* Frosted panel used for every card and surface. */
-.panel {
-  background: color-mix(in srgb, var(--color-ink-850) 78%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-ink-600) 55%, transparent);
-  backdrop-filter: blur(14px);
+@layer components {
+  /* Surface used for every card and panel: white, hairline border, faint lift. */
+  .panel {
+    background: var(--color-ink-850);
+    border: 1px solid var(--color-ink-700);
+    box-shadow: 0 1px 2px rgba(26, 24, 20, 0.04);
+  }
+
+  .panel-hover {
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease;
+  }
+  .panel-hover:hover {
+    border-color: var(--color-ink-600);
+    box-shadow: 0 6px 18px -12px rgba(26, 24, 20, 0.25);
+  }
+
+  /* Double rule: the classic separator under page titles. */
+  .rule-double {
+    border-top: 1px solid var(--color-ink-300);
+    position: relative;
+  }
+  .rule-double::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 2px;
+    border-top: 1px solid var(--color-ink-300);
+  }
+
+  /* Small-caps eyebrow label above headings. */
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-brand-500);
+  }
 }
 
-.panel-hover {
-  transition:
-    border-color 180ms ease,
-    transform 180ms ease,
-    box-shadow 180ms ease;
-}
-.panel-hover:hover {
-  border-color: color-mix(in srgb, var(--color-brand-500) 55%, transparent);
-  transform: translateY(-2px);
-  box-shadow: 0 18px 40px -22px rgba(109, 107, 245, 0.75);
-}
-
-/* Scrollbars — the default light ones look broken on a dark UI. */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--color-ink-600) transparent;
@@ -112,17 +118,17 @@ body {
   background-color: var(--color-ink-500);
 }
 
-/* Focus ring consistent across buttons, links and inputs. */
-:where(a, button, input, textarea, select, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-brand-400);
+/* Focus ring for links and buttons; form fields draw their own border ring. */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand-500);
   outline-offset: 2px;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -130,30 +136,7 @@ body {
   }
 }
 .animate-rise {
-  animation: rise 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-.shimmer {
-  position: relative;
-  overflow: hidden;
-}
-.shimmer::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transform: translateX(-100%);
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.09),
-    transparent
-  );
-  animation: shimmer 1.6s infinite;
+  animation: rise 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -166,8 +149,7 @@ body {
   }
 }
 
-/* Native video controls sit better with a rounded container. */
 video {
-  border-radius: 0.75rem;
+  border-radius: 0.25rem;
   background: #000;
 }

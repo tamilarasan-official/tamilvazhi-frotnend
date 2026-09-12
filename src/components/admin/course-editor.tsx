@@ -92,7 +92,7 @@ export function CourseEditor({ course }: { course: EditorCourse }) {
       <header className="animate-rise flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-3xl font-semibold tracking-tight text-ink-100">{course.title}</h1>
+            <h1 className="text-3xl text-ink-100">{course.title}</h1>
             {published ? <Badge tone="success">Live</Badge> : <Badge>Draft</Badge>}
           </div>
           {course.subtitle && <p className="mt-2 text-[15px] text-ink-400">{course.subtitle}</p>}
@@ -118,7 +118,7 @@ export function CourseEditor({ course }: { course: EditorCourse }) {
       </header>
 
       {!published && (
-        <div className="animate-rise mt-6 rounded-xl border border-glow-500/30 bg-glow-500/10 px-4 py-3 text-[13px] text-glow-400">
+        <div className="animate-rise mt-6 rounded border border-glow-500/40 border-l-[3px] border-l-glow-500 bg-glow-500/10 px-4 py-3 text-[13px] text-glow-400">
           This course is a draft — students can&apos;t open it yet, even with the code. Publish it
           when the material is ready.
         </div>
@@ -159,8 +159,8 @@ export function CourseEditor({ course }: { course: EditorCourse }) {
         )}
       </section>
 
-      <section className="mt-14 border-t border-ink-700/50 pt-6">
-        <h2 className="text-sm font-semibold text-ink-300">Danger zone</h2>
+      <section className="mt-14 border-t border-ink-700 pt-6">
+        <h2 className="font-sans text-[12px] font-semibold uppercase tracking-[0.1em] text-red-700">Danger zone</h2>
         <p className="mt-1.5 text-[13px] text-ink-500">
           Deleting a course also removes every uploaded video and document from storage.
         </p>
@@ -211,7 +211,7 @@ function ModuleCard({
     <Card className="overflow-hidden">
       <div className="flex items-center gap-3 p-4">
         <button type="button" onClick={onToggle} className="min-w-0 flex-1 text-left" aria-expanded={open}>
-          <p className="truncate text-[15px] font-semibold tracking-tight text-ink-100">{mod.title}</p>
+          <p className="truncate font-serif text-[16px] font-semibold text-ink-100">{mod.title}</p>
           <p className="mt-0.5 text-[12px] text-ink-500">
             {mod.items.length} {mod.items.length === 1 ? "file" : "files"}
           </p>
@@ -224,14 +224,14 @@ function ModuleCard({
           type="button"
           onClick={() => setConfirmDelete(true)}
           aria-label={`Delete module ${mod.title}`}
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-ink-500 transition-colors hover:bg-ink-800 hover:text-red-400"
+          className="flex h-9 w-9 items-center justify-center rounded text-ink-500 transition-colors hover:bg-ink-800 hover:text-red-700"
         >
           <TrashIcon className="h-4 w-4" />
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-ink-700/50 p-4">
+        <div className="border-t border-ink-700 p-4">
           {mod.items.length > 0 && (
             <ul className="mb-5 space-y-1.5">
               {mod.items.map((item) => (
@@ -293,8 +293,8 @@ function ItemRow({ item }: { item: EditorItem }) {
   const duration = formatDuration(item.durationSec);
 
   return (
-    <li className="flex items-center gap-3 rounded-xl border border-ink-700/50 bg-ink-900/40 p-2.5">
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink-800 text-ink-400">
+    <li className="flex items-center gap-3 rounded-md border border-ink-700 bg-ink-900 p-2.5">
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded bg-ink-800 text-ink-400">
         {item.type === "VIDEO" ? <VideoIcon className="h-4 w-4" /> : <DocumentIcon className="h-4 w-4" />}
       </span>
 
@@ -304,7 +304,7 @@ function ItemRow({ item }: { item: EditorItem }) {
           onChange={(e) => setTitle(e.target.value)}
           onBlur={() => title.trim() && title !== item.title && patch({ title: title.trim() })}
           aria-label="Item title"
-          className="w-full truncate rounded-md bg-transparent text-[13px] font-medium text-ink-100 outline-none focus:bg-ink-800/70 focus:px-1.5"
+          className="w-full truncate rounded-md bg-transparent text-[13px] font-medium text-ink-100 outline-none focus:bg-ink-800 focus:px-1.5"
         />
         <p className="mt-0.5 truncate text-[11px] text-ink-500">
           {duration ? `${duration} · ` : ""}
@@ -315,7 +315,7 @@ function ItemRow({ item }: { item: EditorItem }) {
 
       <label
         className={cn(
-          "hidden shrink-0 cursor-pointer items-center gap-2 rounded-lg px-2 py-1.5 text-[11px] transition-colors sm:flex",
+          "hidden shrink-0 cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-[11px] transition-colors sm:flex",
           downloadable ? "text-ink-400" : "text-glow-400",
         )}
         title="Allow students to save this file to their device"
@@ -337,7 +337,7 @@ function ItemRow({ item }: { item: EditorItem }) {
         type="button"
         onClick={remove}
         aria-label={`Delete ${item.title}`}
-        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-ink-500 transition-colors hover:bg-ink-800 hover:text-red-400"
+        className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-ink-500 transition-colors hover:bg-ink-800 hover:text-red-700"
       >
         <TrashIcon className="h-4 w-4" />
       </button>

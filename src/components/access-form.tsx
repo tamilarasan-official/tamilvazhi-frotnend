@@ -58,12 +58,12 @@ export function AccessForm({ autoFocus = false }: { autoFocus?: boolean }) {
           maxLength={32}
           aria-label="Course access code"
           aria-invalid={Boolean(error)}
-          className="h-14 w-full rounded-2xl border border-ink-600/70 bg-ink-900/80 pl-12 pr-4 text-center text-lg font-semibold tracking-[0.3em] text-ink-100 placeholder:tracking-[0.2em] placeholder:text-ink-600 transition-colors focus:border-brand-500/70 focus:bg-ink-900"
+          className="h-14 w-full rounded border border-ink-600 bg-white pl-12 pr-4 text-center font-mono text-lg font-semibold tracking-[0.3em] text-ink-100 outline-none placeholder:font-sans placeholder:text-sm placeholder:font-semibold placeholder:tracking-[0.2em] placeholder:text-ink-500 transition-[border-color,box-shadow] focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
         />
       </div>
 
       {error && (
-        <p role="alert" className="mt-3 text-center text-sm text-red-400">
+        <p role="alert" className="mt-3 text-center text-sm text-red-700">
           {error}
         </p>
       )}

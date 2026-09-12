@@ -44,7 +44,7 @@ export function VideoPlayer({
   }, [itemId]);
 
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-black">
+    <div className="relative aspect-video w-full overflow-hidden rounded-md bg-black">
       {src ? (
         <video
           key={itemId}

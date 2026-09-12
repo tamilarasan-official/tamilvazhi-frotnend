@@ -103,10 +103,10 @@ export function Uploader({ moduleId }: { moduleId: string }) {
           if (e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
         }}
         className={cn(
-          "flex flex-col items-center justify-center rounded-2xl border-2 border-dashed px-6 py-10 text-center transition-colors",
+          "flex flex-col items-center justify-center rounded-md border border-dashed bg-white px-6 py-10 text-center transition-colors",
           dragging
             ? "border-brand-500 bg-brand-500/5"
-            : "border-ink-600/60 hover:border-ink-500",
+            : "border-ink-600 hover:border-ink-500",
         )}
       >
         <UploadCloudIcon className="h-9 w-9 text-ink-500" />
@@ -190,17 +190,17 @@ function QueueRow({
   const statusColor = {
     queued: "text-ink-500",
     uploading: "text-brand-400",
-    done: "text-emerald-400",
-    error: "text-red-400",
+    done: "text-emerald-700",
+    error: "text-red-700",
     cancelled: "text-ink-500",
   }[item.status];
 
   return (
-    <div className="rounded-xl border border-ink-700/60 bg-ink-900/50 p-3">
+    <div className="rounded-md border border-ink-700 bg-ink-900 p-3">
       <div className="flex items-center gap-3">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink-800 text-ink-400">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded bg-ink-800 text-ink-400">
           {item.status === "done" ? (
-            <CheckIcon className="h-4 w-4 text-emerald-400" />
+            <CheckIcon className="h-4 w-4 text-emerald-700" />
           ) : item.type === "VIDEO" ? (
             <VideoIcon className="h-4 w-4" />
           ) : (
@@ -214,7 +214,7 @@ function QueueRow({
             onChange={(e) => onTitleChange(e.target.value)}
             disabled={item.status === "uploading" || item.status === "done"}
             aria-label={`Title for ${item.file.name}`}
-            className="w-full truncate rounded-md bg-transparent text-[13px] font-medium text-ink-100 outline-none focus:bg-ink-800/70 focus:px-1.5 disabled:opacity-70"
+            className="w-full truncate rounded-md bg-transparent text-[13px] font-medium text-ink-100 outline-none focus:bg-ink-800 focus:px-1.5 disabled:opacity-70"
           />
           <p className={cn("mt-0.5 truncate text-[11px]", statusColor)}>
             {item.status === "error"
@@ -234,7 +234,7 @@ function QueueRow({
           onClick={onRemove}
           disabled={disabled && item.status !== "uploading"}
           aria-label="Remove from queue"
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-ink-500 transition-colors hover:bg-ink-800 hover:text-red-400 disabled:opacity-40"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-ink-500 transition-colors hover:bg-ink-800 hover:text-red-700 disabled:opacity-40"
         >
           <TrashIcon className="h-4 w-4" />
         </button>
@@ -245,7 +245,7 @@ function QueueRow({
           <div
             className={cn(
               "h-full rounded-full transition-[width] duration-200",
-              item.status === "done" ? "bg-emerald-500" : "bg-brand-500",
+              item.status === "done" ? "bg-emerald-600" : "bg-brand-500",
             )}
             style={{ width: `${item.percent}%` }}
           />

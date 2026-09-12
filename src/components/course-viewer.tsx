@@ -50,8 +50,9 @@ export function CourseViewer({ course }: { course: ClientCourse }) {
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 pb-24 pt-8 sm:px-6">
-      <header className="animate-rise mb-8">
-        <h1 className="text-balance text-3xl font-semibold tracking-tight text-ink-100 sm:text-4xl">
+      <header className="animate-rise mb-8 border-b border-ink-700 pb-6">
+        <p className="eyebrow mb-2">Course</p>
+        <h1 className="text-balance text-3xl text-ink-100 sm:text-4xl">
           {course.title}
         </h1>
         {course.subtitle && (
@@ -83,17 +84,17 @@ export function CourseViewer({ course }: { course: ClientCourse }) {
           {/* ── Viewer ─────────────────────────────────────────── */}
           <section className="animate-rise min-w-0">
             {active ? (
-              <div className="panel overflow-hidden rounded-2xl">
+              <div className="panel overflow-hidden rounded-md">
                 {active.type === "VIDEO" ? (
                   <VideoPlayer itemId={active.id} title={active.title} />
                 ) : (
                   <DocumentPreview item={active} />
                 )}
 
-                <div className="border-t border-ink-700/50 p-5 sm:p-6">
+                <div className="border-t border-ink-700 p-5 sm:p-6">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div className="min-w-0 flex-1">
-                      <h2 className="text-pretty text-lg font-semibold leading-snug tracking-tight text-ink-100">
+                      <h2 className="text-pretty text-xl leading-snug text-ink-100">
                         {active.title}
                       </h2>
                       <p className="mt-1.5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[13px] text-ink-400">
@@ -133,8 +134,8 @@ export function CourseViewer({ course }: { course: ClientCourse }) {
 
           {/* ── Playlist ───────────────────────────────────────── */}
           <aside className="animate-rise min-w-0 lg:sticky lg:top-24 lg:self-start">
-            <div className="panel flex max-h-[calc(100dvh-8rem)] flex-col rounded-2xl">
-              <div className="border-b border-ink-700/50 p-3">
+            <div className="panel flex max-h-[calc(100dvh-8rem)] flex-col rounded-md">
+              <div className="border-b border-ink-700 p-3">
                 <div className="relative">
                   <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-500" />
                   <input
@@ -142,7 +143,7 @@ export function CourseViewer({ course }: { course: ClientCourse }) {
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search this course…"
                     aria-label="Search course content"
-                    className="h-10 w-full rounded-xl border border-ink-600/60 bg-ink-900/60 pl-9 pr-3 text-sm text-ink-100 placeholder:text-ink-500 transition-colors focus:border-brand-500/60"
+                    className="h-10 w-full rounded border border-ink-600 bg-white pl-9 pr-3 text-sm text-ink-100 outline-none placeholder:text-ink-500 transition-[border-color,box-shadow] focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
                   />
                 </div>
               </div>
@@ -160,7 +161,7 @@ export function CourseViewer({ course }: { course: ClientCourse }) {
                         <button
                           type="button"
                           onClick={() => setCollapsed((c) => ({ ...c, [mod.id]: !c[mod.id] }))}
-                          className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-ink-800/60"
+                          className="flex w-full items-center justify-between gap-2 rounded px-3 py-2.5 text-left transition-colors hover:bg-ink-800"
                           aria-expanded={!isCollapsed}
                         >
                           <span className="min-w-0 flex-1">
@@ -219,8 +220,8 @@ function PlaylistRow({
   return (
     <div
       className={cn(
-        "group flex items-center gap-2 rounded-xl pr-1.5 transition-colors",
-        active ? "bg-brand-500/15" : "hover:bg-ink-800/60",
+        "group flex items-center gap-2 rounded-md pr-1.5 transition-colors",
+        active ? "bg-brand-500/15" : "hover:bg-ink-800",
       )}
     >
       <button
@@ -231,7 +232,7 @@ function PlaylistRow({
       >
         <span
           className={cn(
-            "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors",
+            "flex h-8 w-8 shrink-0 items-center justify-center rounded transition-colors",
             active ? "bg-brand-500 text-white" : "bg-ink-800 text-ink-400 group-hover:text-ink-200",
           )}
         >
@@ -263,7 +264,7 @@ function PlaylistRow({
           href={downloadUrl(item.id)}
           title={`Download ${item.fileName}`}
           aria-label={`Download ${item.title}`}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-ink-500 opacity-0 transition-all hover:bg-ink-700 hover:text-ink-100 focus-visible:opacity-100 group-hover:opacity-100"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded text-ink-500 opacity-0 transition-all hover:bg-ink-700 hover:text-ink-100 focus-visible:opacity-100 group-hover:opacity-100"
         >
           <DownloadIcon className="h-4 w-4" />
         </a>
@@ -279,8 +280,8 @@ function PlaylistRow({
  */
 function DocumentPreview({ item }: { item: ClientItem }) {
   return (
-    <div className="flex aspect-video w-full flex-col items-center justify-center bg-gradient-to-br from-ink-800/60 to-ink-900/60 px-6 text-center">
-      <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-ink-800 text-brand-400">
+    <div className="flex aspect-video w-full flex-col items-center justify-center bg-ink-800 px-6 text-center">
+      <div className="flex h-20 w-20 items-center justify-center rounded-md border border-ink-600 bg-white text-brand-500">
         <DocumentIcon className="h-9 w-9" />
       </div>
       <p className="mt-4 text-sm font-semibold tracking-wider text-ink-300">
