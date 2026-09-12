@@ -1,10 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 /**
  * Minimal dialog. Deliberately not <dialog>: Safari's showModal support is
  * still uneven, and this needs only a backdrop, Escape, and scroll lock.
+ *
+ * Rendered through a portal into <body>. An ancestor that animates
+ * `transform` (the page header's entrance animation) becomes the containing
+ * block for `position: fixed`, which clipped the dialog to that header row.
  */
 export function Modal({
   open,
@@ -19,6 +24,9 @@ export function Modal({
   children: React.ReactNode;
   width?: string;
 }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -33,9 +41,9 @@ export function Modal({
     };
   }, [open, onClose]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-end justify-center overflow-y-auto bg-ink-100/45 p-0 sm:items-center sm:p-6"
       role="dialog"
@@ -48,11 +56,10 @@ export function Modal({
       <div
         className={`animate-rise panel w-full ${width} rounded-t-md border-t-[3px] border-t-brand-500 p-6 sm:rounded-md`}
       >
-        <h2 className="mb-5 text-xl text-ink-100">
-          {title}
-        </h2>
+        <h2 className="mb-5 text-xl text-ink-100">{title}</h2>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
